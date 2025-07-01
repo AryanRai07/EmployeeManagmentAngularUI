@@ -1,0 +1,8 @@
+<div class="container" id="login-section">
+    <h2>Login</h2>
+    <input type="text" [(ngModel)]="loginObj.userName" id="username" placeholder="Username" />
+    <input type="password" [(ngModel)]="loginObj.password" id="password" placeholder="Password" />
+    <button id="login-btn" (click)="onLogin()">Login</button>
+    <!-- <p>Don't have an account? <a href="">Register here</a></p> -->
+    <p id="login-error-message" class="error-message"></p>
+  </div>
