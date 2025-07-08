@@ -23,7 +23,7 @@ loginObj:any={
 onLogin(){
   debugger
   return this.employeeService.loginAPI(this.loginObj).subscribe((res:any)=>{
-    if(res.result){
+    if(res.status){
       debugger
       localStorage.setItem('employeeApp',JSON.stringify(res.data));
       this.router.navigateByUrl('dashboard');

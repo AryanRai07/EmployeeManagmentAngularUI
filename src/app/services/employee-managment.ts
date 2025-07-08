@@ -9,6 +9,6 @@ export class EmployeeManagment {
   constructor(private http:HttpClient) { }
 
   loginAPI(data:any){
-    return this.http.post("https://projectapi.gerasim.in/api/EmployeeManagement/login",data);
+    return this.http.post("http://localhost:8081/em_portal/login",data);
   }
 }
