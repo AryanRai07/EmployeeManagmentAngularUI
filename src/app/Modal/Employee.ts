@@ -1,11 +1,11 @@
 export class Employee{
     'employeeId':number;
     'employeeName':string;
-    'contactNo':String;
-    'emilId':String;
-    'deptId':string;
+    'contactNo':string;
+    'emilId':string;
+    'deptId':number;
     'password':string;
-    'gender':String;
-    'role':String;
-    'createdData':String;
+    'gender':string;
+    'role':string;
+    'createdData': Date;
 }
