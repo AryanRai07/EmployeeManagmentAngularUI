@@ -1,29 +1,42 @@
-<nav class="navbar fixed-top navbar-dark bg-custom d-flex flex-column">
-  <div class="container-fluid flex-column align-items-start px-3">
-    <a class="navbar-brand mb-4">Coding Yaar</a>
-    <ul class="navbar-nav flex-column w-100">
-      <li class="nav-item mb-2">
-        <a class="nav-link active">Home</a>
-      </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link">Tutorials</a>
-      </li>
-      <li class="nav-item dropdown mb-2">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item">Action</a></li>
-          <li><a class="dropdown-item">Another Action</a></li>
-          <li><a class="dropdown-item">Something Else</a></li>
-        </ul>
-      </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link">Contact</a>
-      </li>
-    </ul>
 
-    <form class="d-flex mt-auto mb-2 w-100">
-      <input class="form-control me-2" type="search" placeholder="Search">
-      <button class="btn btn-outline-light" type="submit">Search</button>
-    </form>
+<div class="row">
+  <div class="col-lg-2">
+      <nav class="navbar fixed-top navbar-dark bg-custom d-flex flex-column">
+        <div class="container-fluid flex-column align-items-start px-3">
+          <a class="navbar-brand mb-4"> Menu</a>
+          <ul class="navbar-nav flex-column w-100">
+            <li class="nav-item mb-2">
+              <a class="nav-link active" routerLink="/dashboard">Home</a>
+            </li>
+            <li class="nav-item mb-2">
+              <a class="nav-link" routerLink="employee" >Employee</a>
+            </li>
+            <li class="nav-item dropdown mb-2">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item">Action</a></li>
+                <li><a class="dropdown-item">Another Action</a></li>
+                <li><a class="dropdown-item">Something Else</a></li>
+              </ul>
+            </li>
+            <li class="nav-item mb-2">
+              <a class="nav-link">Contact</a>
+            </li>
+          </ul>
+
+          <form class="d-flex mt-auto mb-2 w-100">
+            <input class="form-control me-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
   </div>
-</nav>
+  <div class="col-lg-10">
+    <div class="container-fluid mt-5">
+   <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+
