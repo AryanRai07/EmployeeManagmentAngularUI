@@ -32,19 +32,26 @@
                             <input type="email" class=" form-control" id="emailId" placeholder="Enter email ">
                         </div>                  
                     </div>
+                    <!-- {{parentDeptList|json}} -->
                     <div class="row">
                          <div class="col-md-6">
-                            <label for="mainDeptId" class="form-label">Main Department</label>
-                            <select id="mainDeptId" class="form-control">
-                                <option value="" selected>-- Select main department</option>
+                             <label for="mainDeptId" class="form-label"> Main Department</label>                         
+                            <select id="mainDeptId" class="form-control" [(ngModel)]="selectedDeptId" name="mainDeptId">
+                            
+                              <option value="" selected>-- Select main department</option>
+                            <option *ngFor="let dept of parentDeptList " [value]="dept.id">
+                                {{ dept.departmentName }}
+                            </option>
+                            </select>                          
 
-                            </select>
                         </div>
                          <div class="col-md-6">
                             <label for="subDeptId" class="form-label"> Sub Department</label>
                             <select id="subDeptId" class="form-control">
                                 <option value="" selected>-- Select sub department</option>
-
+   <option *ngFor="let dept of parentDeptList " [value]="dept.id">
+                                {{ dept.departmentName }}
+                            </option>
                             </select>
                         </div>
 

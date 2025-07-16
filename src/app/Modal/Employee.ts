@@ -9,3 +9,22 @@ export class Employee{
     'role':string;
     'createdData': Date;
 }
+
+export interface IParentDepartment{
+
+    'id':number;
+    'departmentName':string;
+}
+
+export interface IChildDepartment{
+
+    'id':number;
+    'childDepartmentName':string;
+    'parentDepartmentId':number;
+}
+
+export interface IApiResponce{
+     message:string;
+     result:boolean;
+     data:any;
+}
