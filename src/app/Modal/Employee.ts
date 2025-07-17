@@ -1,13 +1,26 @@
-export class Employee{
+export class EmployeeData{
     'employeeId':number;
     'employeeName':string;
     'contactNo':string;
-    'emilId':string;
+    'emailId':string;
     'deptId':number;
     'password':string;
     'gender':string;
     'role':string;
     'createdData': Date;
+
+    constructor(){
+        this.employeeId=0;
+        this.employeeName='';
+        this.contactNo='';
+        this.emailId='';
+        this.deptId=0;
+        this.password='';
+        this.gender='';
+        this.role='Employee';
+        this.createdData=new Date();
+    }
+
 }
 
 export interface IParentDepartment{

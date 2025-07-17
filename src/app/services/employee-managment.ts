@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IApiResponce } from '../Modal/Employee';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class EmployeeManagment {
 
   getParentDept(){
     return this.http.get<IApiResponce>(this.url+"getDepartmentList");
+  }
+
+  getChildDeptByParentId(id:number) :Observable<IApiResponce>{
+    return this.http.get<IApiResponce>(this.url+"childDepartment/"+id);
   }
 
 }

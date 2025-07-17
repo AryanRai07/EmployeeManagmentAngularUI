@@ -19,38 +19,37 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="employeeName" class="form-label"> Employee Name</label>
-                            <input type="text" class=" form-control" id="employeeName" placeholder="Enter employee name">
+                            <input type="text" class=" form-control" name="employeeName" [(ngModel)]="employeeObj.employeeName" id="employeeName" placeholder="Enter employee name">
                         </div>
                         <div class="col-md-6">
                             <label for="contactNo" class="form-label"> Contact No</label>
-                            <input type="text" class="form-control" id="contactNo" placeholder="Enter contact number">
+                            <input type="text" class="form-control" [(ngModel)]="employeeObj.contactNo" name="contactNo" id="contactNo" placeholder="Enter contact number">
                         </div>
                     </div>
                      <div class="row">
                         <div class="col-md-6">
                             <label for="emailId" class="form-label"> Email</label>
-                            <input type="email" class=" form-control" id="emailId" placeholder="Enter email ">
+                            <input type="email" class=" form-control" [(ngModel)]="employeeObj.emailId" name="emailId" id="emailId" placeholder="Enter email ">
                         </div>                  
                     </div>
                     <!-- {{parentDeptList|json}} -->
                     <div class="row">
                          <div class="col-md-6">
                              <label for="mainDeptId" class="form-label"> Main Department</label>                         
-                            <select id="mainDeptId" class="form-control" [(ngModel)]="selectedDeptId" name="mainDeptId">
+                            <select id="mainDeptId" class="form-control" [(ngModel)]="mainDeptId" name="mainDeptId" (change)="getChildDept()">
                             
                               <option value="" selected>-- Select main department</option>
                             <option *ngFor="let dept of parentDeptList " [value]="dept.id">
                                 {{ dept.departmentName }}
                             </option>
                             </select>                          
-
                         </div>
                          <div class="col-md-6">
                             <label for="subDeptId" class="form-label"> Sub Department</label>
-                            <select id="subDeptId" class="form-control">
+                            <select id="subDeptId" class="form-control" [(ngModel)]="employeeObj.deptId" name="deptId">
                                 <option value="" selected>-- Select sub department</option>
-   <option *ngFor="let dept of parentDeptList " [value]="dept.id">
-                                {{ dept.departmentName }}
+                                <option *ngFor="let dept of childDeptList " [value]="dept.id">
+                                {{ dept.childDepartmentName }}
                             </option>
                             </select>
                         </div>
@@ -59,22 +58,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="password" class="form-label">Password</label>
-                            <input type="text" class=" form-control" id="password" placeholder="Enter password">
+                            <input type="text" class=" form-control" [(ngModel)]="employeeObj.password" name="password" id="password" placeholder="Enter password">
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label for="role" class="form-label"> Role</label>
                             <input type="text" class="form-control" id="role" placeholder="Enter role">
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="gender" class="form-label">Gender</label>
-                            <select class="form-select" id="gender">
-                            <option value="">-- Select Gender</option>
-                            </select>
-                        </div>
+                            <div> Select Gender</div>
+                                <input type="radio" value="male" name="gender" [(ngModel)]="employeeObj.gender"/>Male
+                                <input type="radio" value="female" name="gender" [(ngModel)]="employeeObj.gender"/> Female
+                            </div>
                     </div>
-                    <button type="submit" class="btn btn-warning mt-3"> Submit</button>
+                    <button type="button" (click)="onSaveEmployee();" class="btn btn-warning mt-3"> Submit</button>
                 </form>
             </div>
         </div>
