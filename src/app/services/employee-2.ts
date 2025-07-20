@@ -15,7 +15,18 @@ export class Employee2 {
   url:String='http://localhost:8081/em_portal/';
 
   createNewEmployee(obj:EmployeeData):Observable<IApiResponce>{
-    return this.http.post<IApiResponce>(this.url+"createEmployee",obj);
+    return this.http.post<IApiResponce>(this.url+"saveData",obj);
+  }
+  
+  getAllEmployee():Observable<IApiResponce>{
+    return this.http.get<IApiResponce>(this.url+"getEmployeeList");
   }
 
+  deleteEmployee(id:number){
+    return this.http.delete<IApiResponce>(this.url+"deleteEmploye/"+id)
+  }
+
+   updateEmployee(obj:EmployeeData):Observable<IApiResponce>{
+    return this.http.put<IApiResponce>(this.url+"updateEmployeee/"+obj.employeeId,obj);
+  }
 }

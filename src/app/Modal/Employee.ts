@@ -24,20 +24,18 @@ export class EmployeeData{
 }
 
 export interface IParentDepartment{
-
     'id':number;
     'departmentName':string;
 }
 
 export interface IChildDepartment{
-
     'id':number;
     'childDepartmentName':string;
     'parentDepartmentId':number;
 }
 
 export interface IApiResponce{
-     message:string;
-     result:boolean;
+     status:boolean;
+     msg:string;    
      data:any;
 }

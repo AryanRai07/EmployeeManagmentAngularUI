@@ -1,6 +1,53 @@
 <div class="row">
     <div class="col-lg-7">
-
+        <div class="card">
+            <div class="card-header bg-secondry">
+                <div class="row">
+                    <div class="col-lg-6 text-black">
+                        <strong>All Employee</strong>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <button class="btn btn-warning"> Add Employee</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderd">
+                    <thead>
+                        <th>Sr No</th>
+                        <th>Name</th>
+                        <th>Contact No</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <!-- @for(item of allEmployeeDetails;track $index){
+                            <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{item.employeeName}}</td>
+                                <td>{{item.contactNo}}</td>
+                                <td>{{item.emailId}}</td>
+                                <td>{{item.deptId}}</td>
+                                <td></td>
+                            </tr>
+                        }                      --> 
+                            <tr *ngFor="let item of allEmployeeDetails; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.name}}</td>
+                                <td>{{ item.contact }}</td>
+                                <td>{{ item.email }}</td>
+                                <td>{{ item.departmentId }}</td>
+                                <td>
+                                    <button class="btn btn-success" (click)="editEmployee(item)">Edit</button>
+                                    <br><br>
+                                    <button class="btn btn-danger" (click)="deleteData(item.id)">Delete</button>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <div class="col-lg-5">
         <div class="card">
@@ -47,7 +94,7 @@
                          <div class="col-md-6">
                             <label for="subDeptId" class="form-label"> Sub Department</label>
                             <select id="subDeptId" class="form-control" [(ngModel)]="employeeObj.deptId" name="deptId">
-                                <option value="" selected>-- Select sub department</option>
+                                <option value="0" selected>-- Select sub department</option>
                                 <option *ngFor="let dept of childDeptList " [value]="dept.id">
                                 {{ dept.childDepartmentName }}
                             </option>
@@ -72,7 +119,8 @@
                                 <input type="radio" value="female" name="gender" [(ngModel)]="employeeObj.gender"/> Female
                             </div>
                     </div>
-                    <button type="button" (click)="onSaveEmployee();" class="btn btn-warning mt-3"> Submit</button>
+                     <button type="button" *ngIf="employeeObj.employeeId == 0" (click)="onSaveEmployee();" class="btn btn-warning mt-3"> Submit</button>
+                    <button type="button"  *ngIf="employeeObj.employeeId != 0" (click)="updateData();" class="btn btn-primary mt-3"> Update</button>
                 </form>
             </div>
         </div>
