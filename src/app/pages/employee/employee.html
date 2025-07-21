@@ -1,5 +1,8 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
 <div class="row">
-    <div class="col-lg-7">
+    <div [class]="isSidePanelOpen() ? 'col-lg-7':'col-lg-12'">
         <div class="card">
             <div class="card-header bg-secondry">
                 <div class="row">
@@ -7,13 +10,13 @@
                         <strong>All Employee</strong>
                     </div>
                     <div class="col-lg-6 text-end">
-                        <button class="btn btn-warning"> Add Employee</button>
+                        <button class="btn btn-warning" (click)="addEmployee()"> Add Employee</button>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-borderd">
-                    <thead>
+                <table class="table table-bordered">
+                    <thead  class="table-light text-center">
                         <th>Sr No</th>
                         <th>Name</th>
                         <th>Contact No</th>
@@ -22,16 +25,16 @@
                         <th>Actions</th>
                     </thead>
                     <tbody>
-                        <!-- @for(item of allEmployeeDetails;track $index){
+                         <!-- @for(item of allEmployeeDetails;track $index){
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{item.employeeName}}</td>
-                                <td>{{item.contactNo}}</td>
-                                <td>{{item.emailId}}</td>
-                                <td>{{item.deptId}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.contact}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.departmentId}}</td>
                                 <td></td>
                             </tr>
-                        }                      --> 
+                        }                       -->
                             <tr *ngFor="let item of allEmployeeDetails; let i = index">
                                 <td>{{ i + 1 }}</td>
                                 <td>{{ item.name}}</td>
@@ -40,7 +43,7 @@
                                 <td>{{ item.departmentId }}</td>
                                 <td>
                                     <button class="btn btn-success" (click)="editEmployee(item)">Edit</button>
-                                    <br><br>
+                                 
                                     <button class="btn btn-danger" (click)="deleteData(item.id)">Delete</button>
                                 </td>
                             </tr>
@@ -49,15 +52,16 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-5">
+    @if(isSidePanelOpen()){
+         <div class="col-lg-5">
         <div class="card">
             <div class="card-header bg-secondry">
                 <div class="row">
-                    <div class="col-lg-6 text-white">
+                    <div class="col-lg-6 text-black">
                         <strong>New Employee</strong>
                     </div>
                     <div class="col-lg-6 text-end">
-                        <button class="btn btn-primary"> Close</button>
+                        <button class="btn btn-primary" (click)="close()"> Close</button>
                     </div>
                 </div>
             </div>
@@ -125,5 +129,7 @@
             </div>
         </div>
     </div>
+    }
+   
 
 </div>

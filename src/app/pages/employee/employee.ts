@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { EmployeeManagment } from '../../services/employee-managment';
 import { EmployeeData, IApiResponce, IChildDepartment, IParentDepartment } from '../../Modal/Employee';
 import { CommonModule } from '@angular/common';
@@ -28,6 +28,7 @@ export class Employee  implements OnInit{
   
   mainDeptId:any="";
   employeeObj:EmployeeData=new EmployeeData();
+isSidePanelOpen=signal<boolean>(false);
 
   getAllEmployeeList(){
     this.employee2Service.getAllEmployee().subscribe({next:(res:IApiResponce)=>{
@@ -69,6 +70,7 @@ export class Employee  implements OnInit{
       debugger;
       if(res.status){
         alert("Employee creation success.");
+         this.getAllEmployeeList();
       } else {
         alert(res.data);
       }
@@ -122,6 +124,7 @@ updateData(){
       debugger;
       if(res.status){
         alert("Employee updated success.");
+         this.getAllEmployeeList();
       } else {
         alert(res.data);
       }
@@ -134,5 +137,13 @@ updateData(){
   });
 }
 
+addEmployee(){
+  this.isSidePanelOpen.set(true);
+}
+
+
+close(){
+  this.isSidePanelOpen.set(false);
+}
 
 }

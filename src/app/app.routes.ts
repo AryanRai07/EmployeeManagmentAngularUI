@@ -3,6 +3,7 @@ import { Login } from './pages/login/login';
 import { Layout } from './pages/layout/layout';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Employee } from './pages/employee/employee';
+import { Project } from './pages/project/project';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,10 @@ export const routes: Routes = [
             {
                 path:'employee',
                 component:Employee
+            },
+            {
+                path:'project',
+                component:Project
             }
         ]
     }
