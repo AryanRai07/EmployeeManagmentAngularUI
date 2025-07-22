@@ -18,6 +18,7 @@ export class Project {
   currentView:String='List';
   projectForm:FormGroup=new FormGroup({});
   employeeData:any=[];
+  projectData:any=[];
   //empApiResponce$:Observable<IApiResponce>=new Observable<IApiResponce>();
   //empData$:Observable<EmployeeData[]>=new Observable<EmployeeData[]>();
 
@@ -27,6 +28,8 @@ export class Project {
     this.initializeForm();
    // this.empApiResponce$=this.employeeSer.getAllEmployee();
     //this.empData$=this.empApiResponce$.pipe(map(res => res.data as EmployeeData[]));
+    this.getAllProjectData();
+
     this.employeeSer.getAllEmployee().subscribe((res:IApiResponce)=>{
       if(res.status){
         this.employeeData=res.data;
@@ -37,7 +40,7 @@ export class Project {
 
 initializeForm() {
   this.projectForm = new FormGroup({
-    projectId: new FormControl(0),
+    projectId: new FormControl(null),
     projectName: new FormControl(""),
     clientName: new FormControl(""),
     startDate: new FormControl(""),
@@ -45,18 +48,41 @@ initializeForm() {
     contactPerson: new FormControl(""),
     contactNo: new FormControl(""),
     emailId: new FormControl(""),
-    createdBy: new FormControl(""),
-    createdDate: new FormControl("")
+    createdBy: new FormControl(1),
+    createdDate: new FormControl(new Date().toISOString())
   });
 }
 
+ getAllProjectData(){
+    this.employeeSer.getAllProjectData().subscribe({next:(res:IApiResponce)=>{
+     if(res.status){
+      this.projectData=res.data;
+     }else{
+      alert(res.msg);
+     }
+    },
+    error: (err:any) => {
+      console.error("Validation Error Response:", err);
+      // Agar error object me msg + data array hai
+      const msg = err?.error?.msg || "Unknown error";
+      const errorList = err?.error?.data || [];
+      // Join all errors into a single string
+      const fullMessage = msg + "\n" + errorList.join('\n');
+      alert(fullMessage);
+    }
+  });
+  }
+
 saveProject(){
+  this.projectForm.patchValue({ leadByEmpId: Number(this.projectForm.value.leadByEmpId) });
+
  const formValue=this.projectForm.value;
+ 
  this.employeeSer.createNewProject(formValue).subscribe({next :(res:IApiResponce)=>{
   if(res.status){
-    console.log(res.data)
+    alert(res.msg)
   }else{
-    alert(res.data);
+    alert(res.msg);
   }
  },
  error: (err) => {

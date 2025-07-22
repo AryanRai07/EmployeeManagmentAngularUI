@@ -31,6 +31,11 @@ export class Employee2 {
   }
 
   createNewProject(obj:IProject):Observable<IApiResponce>{
+    console.log(obj);
     return this.http.post<IApiResponce>(this.url+"createProject",obj);
+  }
+
+   getAllProjectData():Observable<IApiResponce>{
+    return this.http.get<IApiResponce>(this.url+"projectData");
   }
 }

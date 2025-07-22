@@ -15,7 +15,7 @@
                 <div class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Project Id</th>
+                            <th>Sr No</th>
                             <th>Project Name</th>
                             <th>Client Name</th>
                             <th>Start Date</th>
@@ -24,12 +24,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
+                        <tr *ngFor="let item of projectData; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.projectName}}</td>
+                                <td>{{ item.clientName }}</td>
+                                <td>{{ item.startDate }}</td>
+                                <td>{{ item.leadByEmpId}}</td>
+                                <td>
+                                    <!-- <button class="btn btn-success" (click)="editEmployee(item)">Edit</button> -->
+                                 
+                                    <!-- <button class="btn btn-danger" (click)="deleteData(item.id)">Delete</button> -->
+                                </td>
+                            </tr>
                     </tbody>
                 </div>
             </div>
