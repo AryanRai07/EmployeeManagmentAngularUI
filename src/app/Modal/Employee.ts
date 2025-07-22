@@ -39,3 +39,42 @@ export interface IApiResponce{
      msg:string;    
      data:any;
 }
+
+export interface IProject {
+  projectId: number;
+  projectName: string;
+  clientName: string;
+  startDate: Date;
+  leadByEmpId: number;
+  contactPerson: string;
+  contactNo: string;
+  emailId: string;
+  createdBy: number;
+  createdDate: Date;
+}
+
+// export class IProject{
+//     projectId: number,
+//     projectName: string,
+//     clientName: string,
+//     startDate: string,
+//     leadByEmpId: number,
+//     contactPerson: string,
+//     contctNo: string,
+//     emilId: string,
+//     createdBy:number,
+//     createdDate:Date
+
+//     constructor(){
+//         this.projectId=0;
+//         this.projectName='';
+//         this.clientName='';
+//         this.startDate='';
+//         this.leadByEmpId=0;
+//         this.contactPerson='';
+//         this.contctNo='';
+//         this.emilId='';
+//         this.createdBy=1;
+//         this.createdDate=new Date();
+//     }
+// }

@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Employee2 } from '../../services/employee-2';
 import { map, Observable } from 'rxjs';
-import { EmployeeData, IApiResponce } from '../../Modal/Employee';
+import { EmployeeData, IApiResponce,IProject } from '../../Modal/Employee';
 
 @Component({
   selector: 'app-project',
@@ -29,7 +29,7 @@ export class Project {
     //this.empData$=this.empApiResponce$.pipe(map(res => res.data as EmployeeData[]));
     this.employeeSer.getAllEmployee().subscribe((res:IApiResponce)=>{
       if(res.status){
-        this.employeeData
+        this.employeeData=res.data;
       }
     })
     
@@ -41,11 +41,34 @@ initializeForm() {
     projectName: new FormControl(""),
     clientName: new FormControl(""),
     startDate: new FormControl(""),
-    leadByEmpId: new FormControl(""),
+    leadByEmpId: new FormControl(0),
     contactPerson: new FormControl(""),
-    contctNo: new FormControl(""),
-    emilId: new FormControl("")
+    contactNo: new FormControl(""),
+    emailId: new FormControl(""),
+    createdBy: new FormControl(""),
+    createdDate: new FormControl("")
   });
+}
+
+saveProject(){
+ const formValue=this.projectForm.value;
+ this.employeeSer.createNewProject(formValue).subscribe({next :(res:IApiResponce)=>{
+  if(res.status){
+    console.log(res.data)
+  }else{
+    alert(res.data);
+  }
+ },
+ error: (err) => {
+    console.error("Unexpected error:", err);
+    // Show an alert, toast, or fallback UI
+    const msg = err?.error?.msg || "Unknown error";
+      const errorList = err?.error?.data || [];
+      // Join all errors into a single string
+      const fullMessage = msg + "\n" + errorList.join('\n');
+      alert(fullMessage);
+  }
+  })
 }
 
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { EmployeeData, IApiResponce } from '../Modal/Employee';
+import { EmployeeData, IApiResponce, IProject } from '../Modal/Employee';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,5 +28,9 @@ export class Employee2 {
 
    updateEmployee(obj:EmployeeData):Observable<IApiResponce>{
     return this.http.put<IApiResponce>(this.url+"updateEmployeee/"+obj.employeeId,obj);
+  }
+
+  createNewProject(obj:IProject):Observable<IApiResponce>{
+    return this.http.post<IApiResponce>(this.url+"createProject",obj);
   }
 }

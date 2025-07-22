@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="mb-4" [formGroup]="projectForm">               
+                <form  class="mb-4" [formGroup]="projectForm" (ngSubmit)="saveProject()">               
                  <div class="row">
                     <div class="col-lg-6">
                         <label for="projectName" class="form-label"> Project Name</label>
@@ -65,14 +65,13 @@
                         <label for="contactPerson" class="form-label"> Start Date</label>
                         <input type="date" formControlName="startDate" class="form-control" id="startDate" placeholder="Enter date"> 
                     </div>
-                    <!-- {{empData$|json}} -->
+                    <!-- {{employeeData|json}} -->
                     <div class="col-lg-6">
-                        <label for="leadByEmpId" class="form-label"> Lead By Employee ID</label>
-                        <!-- <input type="text" formControlName="leadByEmpId" class="form-control" id="leadByEmpId" placeholder="Enter lead by employee id"> -->
-                        <select formControlName="leadByEmpId" id="leadByEmpId"  class="form-control">
+                        <label for="leadByEmpId" class="form-label"> Lead By Employee ID</label>                     
+                        <select formControlName="leadByEmpId" id="leadByEmpId"  class="form-select">
                             <option value="">Select Employee</option>
                             <!-- <option *ngFor="let item of empData$ |async" [value]="item.employeeId" >{{item.employeeName}}</option> -->
-                             <option *ngFor="let item of employeeData" value="item.employeeId"> {{ item.employeeName }}</option>
+                             <option *ngFor="let item of employeeData" [value]="item.id"> {{ item.name }}</option>
 
                         </select>
                     </div>
@@ -84,18 +83,18 @@
                     </div>
                     <div class="col-lg-6">
                         <label for="contactNoProject" class="form-label"> Contact No</label>
-                        <input type="text" formControlName="contctNo" class="form-control" id="contactNoProject" placeholder="Enter contact number projects">
+                        <input type="text" formControlName="contactNo" class="form-control" id="contactNoProject" placeholder="Enter contact number projects">
                     </div>
                 </div>
                 <div class="row">                  
                     <div class="col-lg-6">
                         <label for="emailId" class="form-label"> Email ID</label>
-                        <input type="text" formControlName="emilId" class="form-control" id="emailId" placeholder="Enter email id">
+                        <input type="text" formControlName="emailId" class="form-control" id="emailId" placeholder="Enter email id">
                     </div>
                 </div>
                 <br>
-                <button class="btn btn-primary" > Save</button>
-                </div>
+                <button  type="submit" class="btn btn-primary" > Save</button>
+                </form >
             </div>
         </div>
     </div>
