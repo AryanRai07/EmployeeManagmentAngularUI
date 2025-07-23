@@ -1,9 +1,10 @@
-import {  CommonModule, NgFor } from '@angular/common';
+import {  CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Employee2 } from '../../services/employee-2';
 import { map, Observable } from 'rxjs';
 import { EmployeeData, IApiResponce,IProject } from '../../Modal/Employee';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -14,15 +15,14 @@ import { EmployeeData, IApiResponce,IProject } from '../../Modal/Employee';
 export class Project {
 
   employeeSer=inject(Employee2)
+   private router=inject(Router)
 
   currentView:String='List';
   projectForm:FormGroup=new FormGroup({});
   employeeData:any=[];
-  projectData:any=[];
+  projectData:IProject[]=[];
   //empApiResponce$:Observable<IApiResponce>=new Observable<IApiResponce>();
   //empData$:Observable<EmployeeData[]>=new Observable<EmployeeData[]>();
-
-
 
   constructor(){
     this.initializeForm();
@@ -80,7 +80,10 @@ saveProject(){
  
  this.employeeSer.createNewProject(formValue).subscribe({next :(res:IApiResponce)=>{
   if(res.status){
-    alert(res.msg)
+    alert(res.msg);
+    //this.router.navigate(['/dashboard']); // 🔁 Redirect here
+     this.getAllProjectData();
+     this.currentView='List';
   }else{
     alert(res.msg);
   }
@@ -95,6 +98,14 @@ saveProject(){
       alert(fullMessage);
   }
   })
+}
+
+editProject(data:IProject){
+
+}
+
+deleteProject(id:number){
+
 }
 
 

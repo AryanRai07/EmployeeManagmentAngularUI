@@ -28,12 +28,12 @@
                                 <td>{{ i + 1 }}</td>
                                 <td>{{ item.projectName}}</td>
                                 <td>{{ item.clientName }}</td>
-                                <td>{{ item.startDate }}</td>
+                                <td>{{ item.startDate | date:'dd-MMMM-yy' }}</td>
                                 <td>{{ item.leadByEmpId}}</td>
                                 <td>
-                                    <!-- <button class="btn btn-success" (click)="editEmployee(item)">Edit</button> -->
+                                     <button class="btn btn-success" (click)="editProject(item)">Edit</button> 
                                  
-                                    <!-- <button class="btn btn-danger" (click)="deleteData(item.id)">Delete</button> -->
+                                     <button class="btn btn-danger" (click)="deleteProject(item.projectId)">Delete</button> 
                                 </td>
                             </tr>
                     </tbody>
