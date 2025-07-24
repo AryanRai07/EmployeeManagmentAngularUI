@@ -40,9 +40,14 @@ export class Project {
     
   }
 
-  onAddEmployee(id:number){
+  onAddEmployee(id:number):void{
   //this.showModal=true;
-  $('#myModal').modal('show');
+    $('#projectModal').modal('show');
+  
+  }
+
+  hideModal():void{
+     $('#projectModal').modal('hide');
   }
 
 initializeForm(data?:IProject) {

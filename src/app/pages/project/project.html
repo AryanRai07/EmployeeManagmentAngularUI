@@ -34,7 +34,7 @@
                                      <button class="btn btn-success" (click)="editProject(item)">Edit</button> 
                                  
                                      <button class="btn btn-danger" (click)="deleteProject(item.projectId)">Delete</button> 
-                                      <button class="btn btn-primary" (click)="onAddEmployee(23)">Employees</button> 
+                                      <button class="btn btn-primary" (click)="onAddEmployee(item.projectId)">Employees</button> 
                                 </td>
                             </tr>
                     </tbody>
@@ -108,22 +108,23 @@
 </div>
 
 
-<div class="modal" #myModal>
+<!-- Modal -->
+<div class="modal fade" id="projectModal">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Project Employee</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="hideModal()"></button>
       </div>
+
       <div class="modal-body">
         <p>Some text in the modal.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="hideModal()" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
   </div>
 </div>
