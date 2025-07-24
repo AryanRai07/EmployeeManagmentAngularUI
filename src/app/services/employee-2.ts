@@ -38,4 +38,12 @@ export class Employee2 {
    getAllProjectData():Observable<IApiResponce>{
     return this.http.get<IApiResponce>(this.url+"projectData");
   }
+
+   updateProjectData(data:IProject):Observable<IApiResponce>{
+    return this.http.put<IApiResponce>(this.url+"updateProject/"+data.projectId,data);
+  }
+
+  deleteProject(id:number){
+    return this.http.delete<IApiResponce>(this.url+"deleteProject/"+id);
+  }
 }
