@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="table table-bordered">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Sr No</th>
@@ -38,7 +38,7 @@
                                 </td>
                             </tr>
                     </tbody>
-                </div>
+                </table>
             </div>
         </div>
     </div>
@@ -110,7 +110,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="projectModal">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Project Employee</h4>
@@ -118,7 +118,58 @@
       </div>
 
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <div class="row">
+            <div class="col-lg-3">
+                <select name="" class="form-select" id="empId" name="empId" [(ngModel)]="projectEmployee.empId">
+                    <option value="0">Select Employee</option>
+                    <option *ngFor="let item of employeeData" [value]="item.id"> {{ item.name }}</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" name="role"  [(ngModel)]="projectEmployee.role"placeholder="Role">
+            </div>
+            <div class="col-lg-3">
+                <input type="date" name="assignedData" [(ngModel)]="projectEmployee.assignedData" class="form-control">
+            </div>
+            <div class="col-lg-3">
+                <button class="btn btn-primary" (click)="saveProjectEmployee();">Add</button>
+            </div>
+        </div>
+        </div>
+        <div class="modal-body">
+        <div class="row">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Employee Name</th>
+                        <th>Status</th>
+                        <th>Role</th>
+                        <th>Assigned Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="projectEmployeeData?.length === 0">
+                        <td colspan="5" class="text-center">No records found.</td>
+                    </tr>
+                     <tr *ngFor="let item of projectEmployeeData; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.projectId}}</td>
+                            <td>{{ item.empId }}</td>
+                            <td>{{ item.role }}</td>
+                            <td>{{ item.assignedData | date:'dd-MMMM-yy' }}</td>
+                           
+                            <!-- <td>
+                                    <button class="btn btn-success" (click)="editProject(item)">Edit</button> 
+                                
+                                    <button class="btn btn-danger" (click)="deleteProject(item.projectId)">Delete</button> 
+                                    <button class="btn btn-primary" (click)="onAddEmployee(item.projectId)">Employees</button> 
+                            </td> -->
+                        </tr> 
+                </tbody>
+            </table>
+        </div>
+
       </div>
 
       <div class="modal-footer">

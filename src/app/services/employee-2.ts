@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { EmployeeData, IApiResponce, IProject } from '../Modal/Employee';
+import { EmployeeData, IApiResponce, IProject, ProjectEmployee } from '../Modal/Employee';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -45,5 +45,13 @@ export class Employee2 {
 
   deleteProject(id:number){
     return this.http.delete<IApiResponce>(this.url+"deleteProject/"+id);
+  }
+
+  saveProjectEmployee(data:ProjectEmployee){
+    return this.http.post<IApiResponce>(this.url+"saveProjectEmployee",data);
+  }
+
+  getAllProjectWiseEmp():Observable<IApiResponce>{
+    return this.http.get<IApiResponce>(this.url+"getProjectWiseEmployee");
   }
 }

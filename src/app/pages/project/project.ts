@@ -1,14 +1,14 @@
 import {  CommonModule, formatDate } from '@angular/common';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Employee2 } from '../../services/employee-2';
 import { map, Observable } from 'rxjs';
-import { EmployeeData, IApiResponce,IProject } from '../../Modal/Employee';
+import { EmployeeData, IApiResponce,IProject, ProjectEmployee } from '../../Modal/Employee';
 import { Router } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-project',
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule],
   templateUrl: './project.html',
   styleUrl: './project.css'
 })
@@ -23,6 +23,8 @@ export class Project {
   projectForm:FormGroup=new FormGroup({});
   employeeData:any=[];
   projectData:IProject[]=[];
+  projectEmployee:ProjectEmployee=new ProjectEmployee();
+  projectEmployeeData:ProjectEmployee[]=[];
   //empApiResponce$:Observable<IApiResponce>=new Observable<IApiResponce>();
   //empData$:Observable<EmployeeData[]>=new Observable<EmployeeData[]>();
 
@@ -43,7 +45,9 @@ export class Project {
   onAddEmployee(id:number):void{
   //this.showModal=true;
     $('#projectModal').modal('show');
-  
+    this.projectEmployee.projectId=id;
+    this.getProjectEmployee();
+    
   }
 
   hideModal():void{
@@ -150,6 +154,39 @@ deleteProject(id:number){
       },
     })
   }
+}
+
+saveProjectEmployee(){
+  this.projectEmployee.isActive='true';
+  this.employeeSer.saveProjectEmployee(this.projectEmployee).subscribe({next:(res:IApiResponce)=>{
+   if(res.status){
+          alert(res.msg);
+           this.getProjectEmployee();          
+        }else{
+          alert(res.msg);
+        }
+      },
+      error:(err)=> {
+        alert(err);
+      },
+
+  })
+}
+
+getProjectEmployee(){
+  
+  this.employeeSer.getAllProjectWiseEmp().subscribe({next:(res:IApiResponce)=>{
+    if(res.status){
+        this.projectEmployeeData=res.data;    
+        this.projectEmployeeData = this.projectEmployeeData.filter(item => item.projectId === this.projectEmployee.projectId);
+      }else{
+        alert(res.msg);
+      }
+    },
+      error:(err)=> {
+        alert(err);
+      },
+  })
 }
 
 

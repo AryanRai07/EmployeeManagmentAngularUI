@@ -1,3 +1,5 @@
+import { Call } from "@angular/compiler";
+
 export class EmployeeData{
     'employeeId':number;
     'employeeName':string;
@@ -51,6 +53,25 @@ export interface IProject {
   emailId: string;
   createdBy: number;
   createdDate: Date;
+}
+
+export class ProjectEmployee{
+    empProjectId:number;
+    projectId:number;
+    empId:number;
+    assignedData:string;
+    role:string;
+    isActive:string;
+   
+
+    constructor(){
+        this.empProjectId=0;
+        this.projectId=0;
+        this.empId=0;
+        this.assignedData="";
+        this.role="";
+        this.isActive=""
+    }
 }
 
 // export class IProject{
